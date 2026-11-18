@@ -1,0 +1,20 @@
+# A GitHub Actions workflow that fails when one of your targets stops being
+# reachable over IPv6. Copy it to .github/workflows/ in your own repository,
+# with your list in targets.txt.
+name: IPv6 reachability
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+jobs:
+  sites:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - run: go install github.com/quanticdata-io/ipv6-reachability/cmd/ipv6-reachability@latest
+      - run: ipv6-reachability sites -f targets.txt --doh https://cloudflare-dns.com/dns-query --fail-on-ipv4-only --csv | tee ipv6.csv

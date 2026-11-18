@@ -1,0 +1,8 @@
+/ipv6-reachability
+/ipv6-reachability.exe
+/dist/
+*.test
+*.out
+coverage.*
+.idea/
+.vscode/

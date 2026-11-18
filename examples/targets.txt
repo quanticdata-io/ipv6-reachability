@@ -1,0 +1,6 @@
+# One target per line: a domain or a URL. Check your own list:
+#   ipv6-reachability sites -f examples/targets.txt --doh https://cloudflare-dns.com/dns-query
+google.com
+wikipedia.org
+duckduckgo.com
+https://www.example.com/
